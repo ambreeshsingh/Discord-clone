@@ -89,7 +89,30 @@
                 </p>
             </div>
         </div>
-    </div>
+    </div>class Solution {
+        public:
+            int order = 0;
+            int ans = -1;
+        
+            void inorder(TreeNode* root, int k) {
+                if (root == NULL || ans != -1) return;
+        
+                inorder(root->left, k);
+        
+                order++;
+                if (order == k) {
+                    ans = root->val;
+                    return;
+                }
+        
+                inorder(root->right, k);
+            }
+        
+            int kthSmallest(TreeNode* root, int k) {
+                inorder(root, k);
+                return ans;
+            }
+        };
 
    </section>
 
